@@ -1,0 +1,23 @@
+{
+  "name": "currence/idin",
+  "description": "A PHP library for working with the iDIN protocol",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+        "BankId\\Merchant\\Library\\": "",
+        "BankId\\Merchant\\Library\\Internal\\": "internal",
+        "BankId\\Merchant\\Library\\Validation\\": "validation"
+    }
+  },
+  "require": {
+    "php": ">= 5.4",
+    "robrichards/xmlseclibs": "2.0.0"
+  },
+  "suggest": {
+    "ext/curl": "cURL extension",
+    "ext/openssl": "OpenSSL extension",
+    "ext/mcrypt": "MCrypt extension"
+  },
+  "type": "library",
+  "version": "2018.08.03"
+}
