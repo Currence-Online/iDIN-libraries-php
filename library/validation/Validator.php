@@ -268,23 +268,27 @@ class Validator {
 
         $ServiceId = intval($ServiceId, 10);
 
-        if ($ServiceId === ServiceIds::$Sign && empty($DocumentId)) {
-            throw new \BankId\Merchant\Library\CommunicatorException("DocumentID should be present");
-        }
-
         $compositeValues =
             ServiceIds::$None | ServiceIds::$ConsumerTransientId | ServiceIds::$ConsumerBin
             | ServiceIds::$Name | ServiceIds::$Address | ServiceIds::$IsEighteenOrOlder
             | ServiceIds::$DateOfBirth | ServiceIds::$Gender | ServiceIds::$BSN
             | ServiceIds::$Email | ServiceIds::$Telephone;
 
-        if( ($ServiceId != ServiceIds::$Sign) && ((~$compositeValues & $ServiceId) == ServiceIds::$Sign) ) {
-            throw new \BankId\Merchant\Library\CommunicatorException("Sign cannot be combined with other services");
-        }
-
-        if ($ServiceId !== ServiceIds::$Sign && !empty($DocumentId)) {
-            throw new \BankId\Merchant\Library\CommunicatorException("DocumentID should not be filled if the Sign service is not requested");
-        }
+		if (empty($DocumentId)) {
+            if ($ServiceId === ServiceIds::$Sign || ($ServiceId & ServiceIds::$Sign) !== 0){
+                throw new \BankId\Merchant\Library\CommunicatorException("DocumentID should be present.");
+            }
+        } else {
+            if (($ServiceId & ServiceIds::$Sign) !== 0){
+                if (($ServiceId & ServiceIds::$ConsumerBin) === 0){
+                    throw new \BankId\Merchant\Library\CommunicatorException("ConsumerID BIN attribute should be present.");
+                }
+            } else {
+                if ($ServiceId !== ServiceIds::$Sign){
+                    throw new \BankId\Merchant\Library\CommunicatorException("DocumentID should not be filled if the Sign service is not requested.");
+                }
+            }
+        } 
 
         return TRUE;
     }
