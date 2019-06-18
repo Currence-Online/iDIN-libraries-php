@@ -1,3 +1,7 @@
+3 Iun 2019
+* Fix: The attribute for electronic signing cannot be combined with other services in Java iDIN Libraries
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 3 aug 2018
 * Add Signing Service
 
