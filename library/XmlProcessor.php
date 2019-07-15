@@ -52,6 +52,26 @@ class XmlProcessor {
         
         return $doc->saveXML();
     }
+
+    protected function propagateInclusiveNamespaces($src_document,$document) {
+
+        $inclusiveNamespaceNode = $document->getElementsByTagName ('InclusiveNamespaces');
+        foreach ($inclusiveNamespaceNode as $key => $node) {
+            if(!empty($node->attributes->item(0)->nodeValue)) {
+
+                $prefixes = explode(" ", $node->attributes->item(0)->nodeValue);
+                foreach ($prefixes as $key_prefix => $prefix) {
+                    $document->documentElement->setAttributeNS(
+                        Utils::NS_URI,
+                        'xmlns:' . $prefix,
+                        $src_document->lookupNamespaceUri($prefix)
+                    );
+                }
+            }
+        }
+
+        return $document;
+    }
     
     private function checkBankIdSignature($doc) {
 
@@ -59,7 +79,9 @@ class XmlProcessor {
         $bankidDoc = new \DOMDocument();
         $root = $this->propagateNamespaces($bankidRoot, $bankidDoc);
         $bankidDoc->loadXML($bankidDoc->saveXML($root));
-        
+
+        $bankidDoc=$this->propagateInclusiveNamespaces($bankidRoot,$bankidDoc);
+
         $signature = new XMLSecurityDSig();
         $signature->locateSignature($bankidDoc);
         $signature->canonicalizeSignedInfo();

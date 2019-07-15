@@ -6,7 +6,8 @@ class Utils {
     const NS_BANKID = 'http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0';
     const NS_ASSERTION = 'urn:oasis:names:tc:SAML:2.0:assertion';
     const NS_PROTOCOL = 'urn:oasis:names:tc:SAML:2.0:protocol';
-    
+    const NS_URI = 'http://www.w3.org/2000/xmlns/';
+
     public static function log(Configuration $config, $message) {
         $config->getLogger()->log($config, $message);
     }

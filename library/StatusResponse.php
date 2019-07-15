@@ -39,8 +39,7 @@ class StatusResponse extends Internal\StatusResponseBase {
         
         if (strcasecmp($this->status, self::$Success) == 0) {
             $this->statusDateTimestamp = (string)$stsRes->Transaction->statusDateTimestamp;
-            $samlResponse = SamlResponse::parse(
-                $config, $stsRes->Transaction->container->children(Utils::NS_PROTOCOL)->Response);
+            $samlResponse = SamlResponse::parse($config, $stsRes);
             Validation\Validator::validateSamlResponse($samlResponse);
             $this->samlResponse = $samlResponse;
             

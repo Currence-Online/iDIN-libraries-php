@@ -17,12 +17,16 @@ class SamlResponse extends Internal\AcceptanceReportBase {
     private $status;
     
     private function __construct(Configuration $config, \SimpleXMLElement $response) {
+        $responseDoc = $response;
+        $response = $responseDoc->Transaction->container->children(Utils::NS_PROTOCOL)->Response;
         $this->transactionID = (string)$response->attributes()['ID'];
         $this->merchantReference = (string)$response->attributes()['InResponseTo'];
         $this->version = (string)$response->attributes()['Version'];
-        
+        $this->acquirerID = (string)$responseDoc->Acquirer->acquirerID;
+
         foreach ($response->getNamespaces(TRUE) as $nsvalue) {
             $children = $response->children($nsvalue);
+
             if ($nsvalue == Utils::NS_PROTOCOL) {
                 if (isset($children)) {
                     if (!isset($children->Status->StatusCode->StatusCode)) {
@@ -36,7 +40,6 @@ class SamlResponse extends Internal\AcceptanceReportBase {
                 }
             }
             else if ($nsvalue == Utils::NS_ASSERTION) {
-                $this->acquirerID = (string)$children->Issuer;
                 if (!isset($children->Assertion)) {
                     continue;
                 }
