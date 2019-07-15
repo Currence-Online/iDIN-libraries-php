@@ -1,3 +1,8 @@
+15 July 2019
+* Fix "The SamlResponse contains the name of the issuer which gives the response and is no longer exposed as “Acquirer” but as Issuer"
+* InclusiveNamespaces is not taken into account when validating iDIN signature
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 3 Iun 2019
 * Fix: The attribute for electronic signing cannot be combined with other services in Php iDIN Libraries
 
