@@ -55,9 +55,10 @@ class AuthenticationResponse extends Internal\TransactionResponseBase {
     }
     
     public static function parse($xml) {
+        $oldValue = libxml_disable_entity_loader(true);
         $res = new \SimpleXMLElement($xml);
         $response = NULL;
-        
+
         if (strcmp($res->getName(), 'AcquirerTrxRes') == 0) {
             $response = new Schemas\idx\AcquirerTrxRes($xml);
             Validation\Validator::validateAcquirerTrxRes($response);
@@ -69,7 +70,9 @@ class AuthenticationResponse extends Internal\TransactionResponseBase {
         $ar = new AuthenticationResponse();
         $ar->rawMessage = $xml;
         $ar->get($response);
-        
+
+        libxml_disable_entity_loader($oldValue);
+
         return $ar;
     }
     

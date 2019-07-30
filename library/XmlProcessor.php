@@ -186,8 +186,10 @@ class XmlProcessor {
     }
     
     public function verifySignature(Configuration $config, $xml) {
+        $oldValue = libxml_disable_entity_loader(true);
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
+        libxml_disable_entity_loader($oldValue);
         
         if ($doc->getElementsByTagName('Signature')->length == 2) {
             $this->checkBankIdSignature($doc);
@@ -199,8 +201,10 @@ class XmlProcessor {
     }
 
     public function verifySchema($xml) {
+        $oldValue = libxml_disable_entity_loader(true);
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
+        libxml_disable_entity_loader($oldValue);
         
         libxml_use_internal_errors(TRUE);
         

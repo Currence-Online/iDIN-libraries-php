@@ -58,6 +58,7 @@ class DirectoryResponse extends Internal\DirectoryResponseBase {
     }
 
     public static function parse($xml) {
+        $oldValue = libxml_disable_entity_loader(true);
         $res = new \SimpleXMLElement($xml);
         $response = NULL;
         
@@ -72,9 +73,9 @@ class DirectoryResponse extends Internal\DirectoryResponseBase {
         $dr = new DirectoryResponse();
         $dr->rawMessage = $xml;
         $dr->get($response);
-        
-        //var_dump($dr);
-        
+
+        libxml_disable_entity_loader($oldValue);
+
         return $dr;
     }
     

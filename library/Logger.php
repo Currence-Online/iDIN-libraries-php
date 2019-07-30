@@ -70,9 +70,11 @@ class Logger implements ILogger {
      */
     public function logXmlMessage(Configuration $config, $message) {
         if ($config->ServiceLogsEnabled) {
+            $oldValue = libxml_disable_entity_loader(true);
             $dom = new \DOMDocument();
             $dom->loadXML($message);
-            
+            libxml_disable_entity_loader($oldValue);
+
             $filename = $config->ServiceLogsPattern;
             $now = new \DateTime();
             $msec = substr(explode(' ', \microtime())[0], 2, 3);

@@ -80,6 +80,7 @@ class StatusResponse extends Internal\StatusResponseBase {
     }
     
     public static function parse(Configuration $config, $xml) {
+        $oldValue = libxml_disable_entity_loader(true);
         $res = new \SimpleXMLElement($xml);
         $response = NULL;
         
@@ -94,6 +95,8 @@ class StatusResponse extends Internal\StatusResponseBase {
         $sr = new StatusResponse();
         $sr->rawMessage = $xml;
         $sr->get($config, $response);
+
+        libxml_disable_entity_loader($oldValue);
 
         return $sr;
     }
