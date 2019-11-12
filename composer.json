@@ -19,5 +19,5 @@
     "ext/mcrypt": "MCrypt extension"
   },
   "type": "library",
-  "version": "2018.08.03"
+  "version": "1.2.4"
 }
