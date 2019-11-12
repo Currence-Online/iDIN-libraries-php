@@ -32,7 +32,7 @@ steps:
     #Contents: "**"
     SourceFolder: "$(Build.SourcesDirectory)"
     Contents: |
-      Library//**
+      library//**
       ChangeLog.txt
       LICENSE
       README.md
