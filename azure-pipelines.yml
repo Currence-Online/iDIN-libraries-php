@@ -33,9 +33,10 @@ steps:
     SourceFolder: "$(Build.SourcesDirectory)"
     Contents: |
       Library//**
-      CHANGELOG.txt
+      ChangeLog.txt
       LICENSE
       README.md
+      composer.json
     TargetFolder: '$(Build.SourcesDirectory)/TEMP'
 
 - task: ArchiveFiles@2
