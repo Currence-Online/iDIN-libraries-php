@@ -186,7 +186,9 @@ class Validator {
                 case SamlAttribute::$ConsumerPartnerLastNamePrefix:
                     self::checkByValue($attrValue, '[[:print:]]{1,10}');
                     break;
-                case SamlAttribute::$ConsumerIntAddressLine:
+                case SamlAttribute::$ConsumerIntAddressLine1:
+                case SamlAttribute::$ConsumerIntAddressLine2:
+                case SamlAttribute::$ConsumerIntAddressLine3:
                     self::checkByValue($attrValue, '[[:print:]]{1,70}');
                     break;
                 case SamlAttribute::$ConsumerTelephone:

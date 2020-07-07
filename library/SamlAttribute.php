@@ -129,8 +129,27 @@ class SamlAttribute {
 
     /** Consumer's Int Address Line
      * @var string
+     * @deprecated
+     * @see $ConsumerIntAddressLine1
+     * @see $ConsumerIntAddressLine2
+     * @see $ConsumerIntAddressLine3
      */
     public static $ConsumerIntAddressLine = "urn:nl:bvn:bankid:1.0:consumer.intaddressline1/2/3";
+
+    /** Consumer's Int Address Line 1
+     * @var string
+     */
+    public static $ConsumerIntAddressLine1 = "urn:nl:bvn:bankid:1.0:consumer.intaddressline1";
+
+    /** Consumer's Int Address Line 2
+     * @var string
+     */
+    public static $ConsumerIntAddressLine2 = "urn:nl:bvn:bankid:1.0:consumer.intaddressline2";
+
+    /** Consumer's Int Address Line 3
+     * @var string
+     */
+    public static $ConsumerIntAddressLine3 = "urn:nl:bvn:bankid:1.0:consumer.intaddressline3";
 
     /** Specify the document to be signed
      * @var string
