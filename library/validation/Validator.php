@@ -145,7 +145,7 @@ class Validator {
                     self::checkByValue($attrValue, '[[:print:]]{1,28}');
                     break;
                 case SamlAttribute::$ConsumerInitials:
-                    self::checkByValue($attrValue, '^[\p{Lu}]{1,24}');
+                    self::checkByValue($attrValue, '[\p{Lu}]{1,24}');
                     break;
                 case SamlAttribute::$ConsumerDateOfBirth:
                     self::checkByValue($attrValue, '\d\d\d\d(0[0-9]|1[012])(0[0-9]|[12][0-9]|3[01])');
