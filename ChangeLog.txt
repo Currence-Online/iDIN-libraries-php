@@ -1,3 +1,10 @@
+24 Aug 2020 [v1.2.6]
+* 128248: COT-526: Add the library version in the logs
+* improve initials validator regex
+* Fix invalid intaddressline SAML Attribute
+* Comply with psr-4 autoloading standard
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 16 Apr 2020 [v1.2.5]
 * upgrade xmlseclibs library (3.0.3+)
 

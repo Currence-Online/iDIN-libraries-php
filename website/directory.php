@@ -1,7 +1,7 @@
 <?php
 include '_header.php';
 
-require __DIR__ . '/../library/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use BankId\Merchant\Library\Configuration;
 use BankId\Merchant\Library\Communicator;

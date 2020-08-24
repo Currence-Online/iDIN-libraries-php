@@ -8,6 +8,8 @@ namespace BankId\Merchant\Library;
 class Configuration {
     
     private static $_instance;
+
+    private $version = "1.2.6";
     
     /**
      * Gets the active Configuration instance
@@ -459,5 +461,12 @@ class Configuration {
      */
     public function getMessenger() {
         return $this->messenger;
+    }
+
+    /**
+     * Gets the version of the library
+     */
+    public function getVersion(){
+        return $this->version;
     }
 }
