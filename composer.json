@@ -4,7 +4,7 @@
   "license": "proprietary",
   "autoload": {
     "psr-4": {
-        "BankId\\Merchant\\Library\\": "library/"
+      "BankId\\Merchant\\Library\\": ["library"]
     }
   },
   "require": {

@@ -59,7 +59,7 @@ class Logger implements ILogger {
                 mkdir(dirname($full_path), 0700, TRUE);
             }
 
-            file_put_contents($full_path, date('Y-m-d H:i:s : ') . $function . '() - ' . $message . "\n", FILE_APPEND);
+            file_put_contents($full_path, date('Y-m-d H:i:s : ') . '[v' . $config->getVersion() . ']' . $function . '() - ' . $message . "\n", FILE_APPEND);
         }
     }
 
