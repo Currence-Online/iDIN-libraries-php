@@ -7,14 +7,22 @@
       "BankId\\Merchant\\Library\\": ["library"]
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "BankId\\Merchant\\Library\\": ["library","library.tests"]
+    }
+  },
   "require": {
-    "php": ">= 5.4",
+    "php": ">7.3",
     "robrichards/xmlseclibs": "^3.0.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8"
   },
   "suggest": {
     "ext/curl": "cURL extension",
     "ext/openssl": "OpenSSL extension"
   },
   "type": "library",
-  "version": "1.2.5"
+  "version": "1.2.7-dev"
 }
