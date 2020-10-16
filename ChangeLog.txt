@@ -1,3 +1,8 @@
+[v1.2.7]
+* iDIN Signing extension - The library publishes the intermediate symmetric keys for each of the attributes.
+* Fix "COT-553: [PHP] An error ocurs when performing an Electronic Signing transaction request for PHP"
+
+---------------------------------------------------------------------------------------------------------------------------------------------
 24 Aug 2020 [v1.2.6]
 * 128248: COT-526: Add the library version in the logs
 * improve initials validator regex

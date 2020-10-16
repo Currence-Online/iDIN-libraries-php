@@ -104,7 +104,7 @@ class Utils {
             $authnReq->getIssuer()->value()));
 
         if(!empty($authnReq->getExtensions()->getAttribute()[0])) {
-            $Extensions = $dom->createElementNS(self::NS_ASSERTION, 'saml:Extensions', '');
+            $Extensions = $dom->createElementNS(self::NS_PROTOCOL, 'saml:Extensions', '');
 
             $Attribute = $dom->createElementNS(self::NS_ASSERTION, 'saml:Attribute', '');
             $Attribute->setAttribute('Name', $authnReq->getExtensions()->getName());
