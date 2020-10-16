@@ -15,6 +15,8 @@ class SamlResponse extends Internal\AcceptanceReportBase {
     private $acquirerID;
     private $attributes;
     private $status;
+
+    private $attributesEncryptionKeys = [];
     
     private function __construct(Configuration $config, \SimpleXMLElement $response) {
         $responseDoc = $response;
@@ -56,9 +58,11 @@ class SamlResponse extends Internal\AcceptanceReportBase {
                 $nameId = new \SimpleXMLElement($nameIdDecrypted);
                 if (strcmp(substr((string)$nameId, 0, 5), 'TRANS') == 0) {
                     $this->attributes[SamlAttribute::$ConsumerTransientID] = (string)$nameId;
+                    $this->attributesEncryptionKeys[count($this->attributesEncryptionKeys)-1]['AttributeName']=SamlAttribute::$ConsumerTransientID;
                 }
                 else {
                     $this->attributes[SamlAttribute::$ConsumerBin] = (string)$nameId;
+                    $this->attributesEncryptionKeys[count($this->attributesEncryptionKeys)-1]['AttributeName']=SamlAttribute::$ConsumerBin;
                 }
                 
                 if (!isset($children->Assertion->AttributeStatement))
@@ -68,7 +72,9 @@ class SamlResponse extends Internal\AcceptanceReportBase {
                     foreach ($children->Assertion->AttributeStatement->EncryptedAttribute as $value) {
                         $decrypted = $this->decryptElement($config, $value);
                         $element = new \SimpleXMLElement($decrypted);
-                        $this->attributes[(string)$element->attributes()['Name']] = trim(dom_import_simplexml($element)->textContent);
+                        $attributeName=(string)$element->attributes()['Name'];
+                        $this->attributes[$attributeName] = trim(dom_import_simplexml($element)->textContent);
+                        $this->attributesEncryptionKeys[count($this->attributesEncryptionKeys)-1]['AttributeName']=$attributeName;
                     }
                 }
                 
@@ -104,6 +110,9 @@ class SamlResponse extends Internal\AcceptanceReportBase {
         $enc = new XMLSecEnc();
         
         $enc->setNode($encryptedData);
+
+        array_push($this->attributesEncryptionKeys,['AesKey'=>$aesKey]);
+
         return $enc->decryptNode($key);
     }
     
@@ -155,5 +164,9 @@ class SamlResponse extends Internal\AcceptanceReportBase {
      */
     public function getStatus() {
         return $this->status;
+    }
+
+    public function getAttributesEncryptionKeys(){
+        return $this->attributesEncryptionKeys;
     }
 }

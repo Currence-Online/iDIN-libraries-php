@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import namespace="http://www.betaalvereniging.nl/iDx/messages/Merchant-Acquirer/1.0.0" schemaLocation="../../library/Schemas/idx/idx.merchant-acquirer.1.0.xsd"/>
+<xs:import namespace="urn:oasis:names:tc:SAML:2.0:assertion" schemaLocation="../../library/Schemas/saml/saml-schema-assertion-2.0.xsd"/>
+<xs:import namespace="urn:oasis:names:tc:SAML:2.0:protocol" schemaLocation="../../library/Schemas/saml/saml-schema-protocol-2.0.xsd"/>
+</xs:schema>
