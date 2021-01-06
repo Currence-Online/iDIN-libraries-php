@@ -70,10 +70,16 @@ class Logger implements ILogger {
      */
     public function logXmlMessage(Configuration $config, $message) {
         if ($config->ServiceLogsEnabled) {
-            $oldValue = libxml_disable_entity_loader(true);
+            if (\PHP_VERSION_ID < 80000) {
+                $oldValue = libxml_disable_entity_loader(true);
+            }
+
             $dom = new \DOMDocument();
             $dom->loadXML($message);
-            libxml_disable_entity_loader($oldValue);
+
+            if (\PHP_VERSION_ID < 80000) {
+                libxml_disable_entity_loader($oldValue);
+            }
 
             $filename = $config->ServiceLogsPattern;
             $now = new \DateTime();
