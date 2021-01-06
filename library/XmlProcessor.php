@@ -189,6 +189,7 @@ class XmlProcessor {
         if (\PHP_VERSION_ID < 80000) {
             $oldValue = libxml_disable_entity_loader(true);
         }
+
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
         if (\PHP_VERSION_ID < 80000) {
@@ -208,6 +209,7 @@ class XmlProcessor {
         if (\PHP_VERSION_ID < 80000) {
             $oldValue = libxml_disable_entity_loader(true);
         }
+
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
         if (\PHP_VERSION_ID < 80000) {

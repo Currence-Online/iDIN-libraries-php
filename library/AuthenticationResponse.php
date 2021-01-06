@@ -55,10 +55,10 @@ class AuthenticationResponse extends Internal\TransactionResponseBase {
     }
     
     public static function parse($xml) {
-
         if (\PHP_VERSION_ID < 80000) {
             $oldValue = libxml_disable_entity_loader(true);
         }
+
         $res = new \SimpleXMLElement($xml);
         $response = NULL;
 

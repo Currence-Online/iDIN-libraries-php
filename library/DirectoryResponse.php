@@ -61,6 +61,7 @@ class DirectoryResponse extends Internal\DirectoryResponseBase {
         if (\PHP_VERSION_ID < 80000) {
             $oldValue = libxml_disable_entity_loader(true);
         }
+
         $res = new \SimpleXMLElement($xml);
         $response = NULL;
         
