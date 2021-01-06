@@ -186,11 +186,16 @@ class XmlProcessor {
     }
     
     public function verifySignature(Configuration $config, $xml) {
-        $oldValue = libxml_disable_entity_loader(true);
+        if (\PHP_VERSION_ID < 80000) {
+            $oldValue = libxml_disable_entity_loader(true);
+        }
+
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
-        libxml_disable_entity_loader($oldValue);
-        
+        if (\PHP_VERSION_ID < 80000) {
+            libxml_disable_entity_loader($oldValue);
+        }
+
         if ($doc->getElementsByTagName('Signature')->length == 2) {
             $this->checkBankIdSignature($doc);
             $this->checkIdxSignature($config, $doc);
@@ -201,11 +206,16 @@ class XmlProcessor {
     }
 
     public function verifySchema($xml) {
-        $oldValue = libxml_disable_entity_loader(true);
+        if (\PHP_VERSION_ID < 80000) {
+            $oldValue = libxml_disable_entity_loader(true);
+        }
+
         $doc = new \DOMDocument();
         $doc->loadXML($xml);
-        libxml_disable_entity_loader($oldValue);
-        
+        if (\PHP_VERSION_ID < 80000) {
+            libxml_disable_entity_loader($oldValue);
+        }
+
         libxml_use_internal_errors(TRUE);
         
         if (!$doc->schemaValidate($this->schemas[$doc->documentElement->localName]))

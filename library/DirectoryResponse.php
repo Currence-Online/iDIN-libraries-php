@@ -58,7 +58,10 @@ class DirectoryResponse extends Internal\DirectoryResponseBase {
     }
 
     public static function parse($xml) {
-        $oldValue = libxml_disable_entity_loader(true);
+        if (\PHP_VERSION_ID < 80000) {
+            $oldValue = libxml_disable_entity_loader(true);
+        }
+
         $res = new \SimpleXMLElement($xml);
         $response = NULL;
         
@@ -74,7 +77,9 @@ class DirectoryResponse extends Internal\DirectoryResponseBase {
         $dr->rawMessage = $xml;
         $dr->get($response);
 
-        libxml_disable_entity_loader($oldValue);
+        if (\PHP_VERSION_ID < 80000) {
+            libxml_disable_entity_loader($oldValue);
+        }
 
         return $dr;
     }
