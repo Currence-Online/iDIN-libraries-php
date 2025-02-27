@@ -221,8 +221,8 @@ class Validator {
             return TRUE;
         }
         try {
-            $now = new \DateTime(NULL);
-            $then = new \DateTime(NULL);
+            $now = new \DateTime('');
+            $then = new \DateTime('');
             $then->add(new \DateInterval($value));
             return (($then->getTimestamp() - $now->getTimestamp()) <= (5 * 60));
         } catch (Exception $ex) {
@@ -276,11 +276,7 @@ class Validator {
             | ServiceIds::$DateOfBirth | ServiceIds::$Gender | ServiceIds::$BSN
             | ServiceIds::$Email | ServiceIds::$Telephone;
 
-		if (empty($DocumentId)) {
-            if ($ServiceId === ServiceIds::$Sign || ($ServiceId & ServiceIds::$Sign) !== 0){
-                throw new \BankId\Merchant\Library\CommunicatorException("DocumentID should be present.");
-            }
-        } else {
+		if (!empty($DocumentId)) {
             if (($ServiceId & ServiceIds::$Sign) !== 0){
                 if (($ServiceId & ServiceIds::$ConsumerBin) === 0){
                     throw new \BankId\Merchant\Library\CommunicatorException("ConsumerID BIN attribute should be present.");

@@ -10,7 +10,6 @@ namespace BankId\Merchant\Library\Schemas\idx;
  */
 class TransactionContainerType
 {
-
-
+    public $ContainedData = null;
 }
 
