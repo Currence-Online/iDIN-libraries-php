@@ -1,7 +1,7 @@
 {
   "name": "currence/idin",
   "description": "A PHP library for working with the iDIN protocol",
-  "license": "proprietary",
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "BankId\\Merchant\\Library\\": ["library"]
