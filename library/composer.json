@@ -1,7 +1,7 @@
 {
   "name": "currence/idin",
   "description": "A PHP library for working with the iDIN protocol",
-  "license": "proprietary",
+  "license": "MIT",
   "require": {
     "php": "^8.3",
     "robrichards/xmlseclibs": "^3.1.3"
