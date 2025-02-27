@@ -1,3 +1,6 @@
+[V1.3.0]
+* Update support for php 8.3
+---------------------------------------------------------------------------------------------------------------------------------------------
 [v1.2.8-DEV]
 * Added if check for less than php8 with libxml_disable_entity_loader function
 
